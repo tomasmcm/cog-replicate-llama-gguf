@@ -4,7 +4,7 @@ from llama_cpp import Llama
 class Predictor(BasePredictor):
     def setup(self):
         """prepare the model"""
-        model_path = './models/carl-llama-2-13b.Q4_K_M.gguf'
+        model_path = './models/<model_name>.gguf'
         self.llm = Llama(model_path, n_ctx=2048)
 
     def predict(
@@ -34,9 +34,5 @@ class Predictor(BasePredictor):
                 default=1
             )) -> str:
         """Run a single prediction on the model"""
-        # system_prompt = """This is a conversation with your Therapist AI, Carl. Carl is designed to help you while in stress. It can answer your questions and help you to calm down.\n\nContext\nYou are Carl, A Therapist AI\n"""
-        # prompt_prefix = """USER: """
-        # prompt_suffix = """\nCARL: """
-        # prompt = system_prompt + prompt_prefix + prompt + prompt_suffix
         output = self.llm(prompt, max_tokens=max_length, temperature=temperature, top_p=top_p, repeat_penalty=repetition_penalty)
         return output["choices"][0]["text"]
