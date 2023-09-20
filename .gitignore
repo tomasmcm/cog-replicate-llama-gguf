@@ -2,5 +2,5 @@ __pycache__
 .cog
 .vscode
 models/*
-!models/README
+!models/README.md
 .DS_Store
